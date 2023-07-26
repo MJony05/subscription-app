@@ -26,6 +26,7 @@ const Header = () => {
           width={56}
           height={56}
           className="cursor-pointer object-contain"
+          priority
         />
         <ul className="space-x-4 md:flex hidden">
           <li className="navLink">Home</li>
