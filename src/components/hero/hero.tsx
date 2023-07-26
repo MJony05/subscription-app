@@ -30,13 +30,11 @@ const Hero = ({ trending }: IHeroProps): JSX.Element => {
       <div className="flex items-center space-x-2">
         <ReactStars
           edit={false}
-          size={26}
           count={10}
-          value={movie?.vote_average}
+          value={movie.vote_average}
           color2={'#fff'}
         />
-
-        <p>({movie?.vote_count})</p>
+        <p>({movie.vote_count})</p>
       </div>
       <h1 className="text-2xl font-bold md:text-4xl lg:text-7xl">
         {movie?.title || movie?.name || movie?.original_name}
