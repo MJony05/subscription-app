@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Header, Hero } from 'src/components'
 import { API_REQUEST } from 'src/services/api.service'
 import { IMovie } from 'src/interfaces/app.interface'
+import ReactStars from 'react-stars'
 export default function Home({ trending }: HomeProps): JSX.Element {
   return (
     <div className="relative h-[200vh]">
