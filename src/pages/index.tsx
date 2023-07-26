@@ -1,10 +1,9 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { Header, Hero } from 'src/components'
+import { Header, Hero, Row } from 'src/components'
 import { API_REQUEST } from 'src/services/api.service'
 import { IMovie } from 'src/interfaces/app.interface'
 export default function Home({ trending, topRated }: HomeProps): JSX.Element {
-  console.log(topRated)
   return (
     <div className="relative h-[200vh]">
       <Head>
@@ -17,7 +16,9 @@ export default function Home({ trending, topRated }: HomeProps): JSX.Element {
 
       <main className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16">
         <Hero trending={trending} />
-        <section>{/* Row */}</section>
+        <section>
+          <Row title="Top Rated" movies={topRated} />
+        </section>
       </main>
     </div>
   )

@@ -24,7 +24,7 @@ const Hero = ({ trending }: IHeroProps): JSX.Element => {
           priority
         />
       </div>
-      <div className="px-[8px] py-[4px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#1d1d1d]/50 w-[110px]">
+      <div className="px-[8px] py-[4px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#e5e5e5]/50 w-[110px]">
         {movie?.media_type}
       </div>
       <div className="flex items-center space-x-2">
