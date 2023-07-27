@@ -3,12 +3,13 @@ import { getFirestore } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBu49sEJuzDIK2eL7D_YltKFuX1je_Jw4c',
-  authDomain: 'sammi-movie-app.firebaseapp.com',
-  projectId: 'sammi-movie-app',
-  storageBucket: 'sammi-movie-app.appspot.com',
-  messagingSenderId: '92350315428',
-  appId: '1:92350315428:web:c9d8ca995f907d34f0df31',
+  apiKey: 'AIzaSyDGkLpR4YeZM9jZX7cTZrBGuyqeogz48W8',
+  authDomain: 'movie-app-32f9d.firebaseapp.com',
+  projectId: 'movie-app-32f9d',
+  storageBucket: 'movie-app-32f9d.appspot.com',
+  messagingSenderId: '451765249125',
+  appId: '1:451765249125:web:7d96c615b318a39478928c',
+  measurementId: 'G-33NLE3P6P5',
 }
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
