@@ -58,6 +58,7 @@ const Auth = () => {
         src={'https://rb.gy/p2hphi'}
         alt={'bg'}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover -z-10 !hidden sm:!inline opacity-60"
       />
 
