@@ -1,141 +1,124 @@
-import MuiModal from '@mui/material/Modal'
-import { useInfoStore } from 'src/store'
-import { FaPause, FaPlay, FaTimes } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
-import { Element } from 'src/interfaces/app.interface'
-import ReactPlayer from 'react-player'
-import { BiPlus } from 'react-icons/bi'
-import { BsVolumeMute, BsVolumeDown } from 'react-icons/bs'
-import { AiOutlineLike } from 'react-icons/ai'
+import MuiModal from '@mui/material/Modal';
+import { useInfoStore } from 'src/store';
+import { FaPause, FaPlay, FaTimes } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { Element } from 'src/interfaces/app.interface';
+import ReactPlayer from 'react-player';
+import { BiPlus } from 'react-icons/bi';
+import { BsVolumeMute, BsVolumeDown } from 'react-icons/bs';
+import { AiOutlineLike } from 'react-icons/ai';
 
 const Modal = () => {
-  const { modal, setModal, currentMovie } = useInfoStore()
-  const [trailer, setTrailer] = useState<string>('')
-  const [muted, setMuted] = useState<boolean>(true)
-  const [playing, setPlaying] = useState<boolean>(true)
+	const { modal, setModal, currentMovie } = useInfoStore();
+	const [trailer, setTrailer] = useState<string>('');
+	const [muted, setMuted] = useState<boolean>(true);
+	const [playing, setPlaying] = useState<boolean>(true);
 
-  const base_url = process.env.NEXT_PUBLIC_API_DOMAIN as string
-  const api_key = process.env.NEXT_PUBLIC_API_KEY as string
-  console.log(base_url, api_key)
-  const api = `${base_url}/${
-    currentMovie?.media_type === 'tv' ? 'tv' : 'movie'
-  }/${currentMovie.id}/videos?api_key=${api_key}&language=en-US`
+	const base_url = process.env.NEXT_PUBLIC_API_DOMAIN as string;
+	const api_key = process.env.NEXT_PUBLIC_API_KEY as string;
 
-  const handleClose = () => {
-    setModal(false)
-  }
+	const api = `${base_url}/${currentMovie?.media_type === 'tv' ? 'tv' : 'movie'}/${
+		currentMovie.id
+	}/videos?api_key=${api_key}&language=en-US`;
 
-  useEffect(() => {
-    const fetchVideoData = async () => {
-      const data = await fetch(api).then((res) => res.json())
+	const handleClose = () => {
+		setModal(false);
+	};
 
-      if (data?.results) {
-        const index = data.results.findIndex(
-          (el: Element) => el.type === 'Trailer'
-        )
-        setTrailer(data?.results[index]?.key)
-      }
-    }
+	useEffect(() => {
+		const fetchVideoData = async () => {
+			const data = await fetch(api).then(res => res.json());
 
-    fetchVideoData()
+			if (data?.results) {
+				const index = data.results.findIndex((el: Element) => el.type === 'Trailer');
+				setTrailer(data?.results[index]?.key);
+			}
+		};
 
-    // eslint-disable-next-line
-  }, [currentMovie])
+		fetchVideoData();
 
-  return (
-    <MuiModal
-      open={modal}
-      onClose={handleClose}
-      className={
-        'fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll scrollbar-hide'
-      }
-    >
-      <>
-        <button
-          onClick={() => setModal(false)}
-          className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818]"
-        >
-          <FaTimes />
-        </button>
+		// eslint-disable-next-line
+	}, [currentMovie]);
 
-        <div className="relative pt-[55%]">
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${trailer}`}
-            width={'100%'}
-            height={'100%'}
-            playing={playing}
-            style={{ position: 'absolute', top: 0, left: 0 }}
-            muted={muted}
-          />
-          <div className="absolute bottom-10 left-10 flex w-full items-center justify-between px-18">
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setPlaying((prev) => !prev)}
-                className="flex items-center gap-x-2 rounded bg-white px-8 py-2 text-xl font-bold text-black transition hover:bg-[#e6e6e6]"
-              >
-                {playing ? (
-                  <>
-                    <FaPause />
-                    Pause
-                  </>
-                ) : (
-                  <>
-                    <FaPlay className="h-7 w-7 text-black" />
-                    Play
-                  </>
-                )}
-              </button>
-              <button className="modalButton">
-                <BiPlus className="w-7 h-7" />
-              </button>
-              <button className="modalButton">
-                <AiOutlineLike className="w-7 h-7" />
-              </button>
-              <button
-                className="modalButton"
-                onClick={() => setMuted((prev) => !prev)}
-              >
-                {muted ? (
-                  <BsVolumeMute className="w-7 h-7" />
-                ) : (
-                  <BsVolumeDown className="w-7 h-7" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
+	return (
+		<MuiModal
+			open={modal}
+			onClose={handleClose}
+			className={'fixed !top-7 left-0 right-0 z-50 mx-auto w-full max-w-5xl overflow-hidden overflow-y-scroll scrollbar-hide'}
+		>
+			<>
+				<button
+					onClick={() => setModal(false)}
+					className='modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818]'
+				>
+					<FaTimes />
+				</button>
 
-        <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
-          <div className="space-y-6 text-lg">
-            <div className="flex items-center space-x-2 text-sm">
-              <p className="font-semibold text-green-400">
-                {currentMovie!.vote_average * 10}% Match
-              </p>
-              <p className="font-light">{currentMovie?.release_date}</p>
-              <div className="flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs">
-                HD
-              </div>
-            </div>
+				<div className='relative pt-[55%]'>
+					<ReactPlayer
+						url={`https://www.youtube.com/watch?v=${trailer}`}
+						width={'100%'}
+						height={'100%'}
+						playing={playing}
+						style={{ position: 'absolute', top: 0, left: 0 }}
+						muted={muted}
+					/>
+					<div className='absolute bottom-10 left-10 flex w-full items-center justify-between px-18'>
+						<div className='flex space-x-2'>
+							<button
+								onClick={() => setPlaying(prev => !prev)}
+								className='flex items-center gap-x-2 rounded bg-white px-8 py-2 text-xl font-bold text-black transition hover:bg-[#e6e6e6]'
+							>
+								{playing ? (
+									<>
+										<FaPause />
+										Pause
+									</>
+								) : (
+									<>
+										<FaPlay className='h-7 w-7 text-black' />
+										Play
+									</>
+								)}
+							</button>
+							<button className='modalButton'>
+								<BiPlus className='w-7 h-7' />
+							</button>
+							<button className='modalButton'>
+								<AiOutlineLike className='w-7 h-7' />
+							</button>
+							<button className='modalButton' onClick={() => setMuted(prev => !prev)}>
+								{muted ? <BsVolumeMute className='w-7 h-7' /> : <BsVolumeDown className='w-7 h-7' />}
+							</button>
+						</div>
+					</div>
+				</div>
 
-            <div className="flex flex-col gap-x-10 gap-y-4 font-light md:flex-row">
-              <p className="w-5/6">{currentMovie?.overview}</p>
-              <div className="flex flex-col space-y-3 text-sm">
-                <div>
-                  <span className="text-[gray]">Original language:</span>{' '}
-                  {currentMovie?.original_language}
-                </div>
+				<div className='flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8'>
+					<div className='space-y-6 text-lg'>
+						<div className='flex items-center space-x-2 text-sm'>
+							<p className='font-semibold text-green-400'>{currentMovie!.vote_average * 10}% Match</p>
+							<p className='font-light'>{currentMovie?.release_date}</p>
+							<div className='flex h-4 items-center justify-center rounded border border-white/40 px-1.5 text-xs'>HD</div>
+						</div>
 
-                <div>
-                  <span className="text-[gray]">Total votes:</span>{' '}
-                  {currentMovie?.vote_count}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    </MuiModal>
-  )
-}
+						<div className='flex flex-col gap-x-10 gap-y-4 font-light md:flex-row'>
+							<p className='w-5/6'>{currentMovie?.overview}</p>
+							<div className='flex flex-col space-y-3 text-sm'>
+								<div>
+									<span className='text-[gray]'>Original language:</span> {currentMovie?.original_language}
+								</div>
 
-export default Modal
+								<div>
+									<span className='text-[gray]'>Total votes:</span> {currentMovie?.vote_count}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</>
+		</MuiModal>
+	);
+};
+
+export default Modal;
