@@ -9,7 +9,6 @@ import { BsVolumeMute, BsVolumeDown } from 'react-icons/bs';
 import { AiOutlineCloseCircle, AiOutlineLike } from 'react-icons/ai';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'src/firebase';
-import { useAuth } from 'src/hooks/useAuth';
 import { AuthContext } from 'src/context/auth.context';
 import { useRouter } from 'next/router';
 import { Button, IconButton, Snackbar } from '@mui/material';

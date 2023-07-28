@@ -6,7 +6,7 @@ import { BiBellMinus } from 'react-icons/bi'
 import { useAuth } from 'src/hooks/useAuth'
 import NavMenu from '../nav-menu/nav-menu'
 
-const Header = () => {
+export const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const { logout } = useAuth()
 
@@ -18,9 +18,7 @@ const Header = () => {
         setScrolled(false)
       }
     }
-
     window.addEventListener('scroll', handleScroll)
-
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -56,5 +54,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header
