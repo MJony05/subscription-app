@@ -1,8 +1,12 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useContext, useEffect } from 'react'
-import { Header, Hero, Modal, Row, SubscriptionPlan } from 'src/components'
-import { AuthContext } from 'src/context/auth.context'
+import {
+  Header,
+  Hero,
+  Modal,
+  Row,
+  SubscriptionPlan,
+} from 'src/components/index'
 import { getList } from 'src/helpers/lists'
 import { IMovie, MyList, Product } from 'src/interfaces/app.interface'
 import { API_REQUEST } from 'src/services/api.service'
