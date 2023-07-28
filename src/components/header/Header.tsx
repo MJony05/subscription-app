@@ -6,7 +6,7 @@ import { BiBellMinus } from 'react-icons/bi'
 import { useAuth } from 'src/hooks/useAuth'
 import NavMenu from '../nav-menu/nav-menu'
 
-export const Header = () => {
+const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const { logout } = useAuth()
 
@@ -54,3 +54,4 @@ export const Header = () => {
     </header>
   )
 }
+export default Header
