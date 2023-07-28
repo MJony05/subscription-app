@@ -1,5 +1,5 @@
-import { Subscription } from 'src/interfaces/app.interface'
+import { Subscription } from 'src/interfaces/app.interface';
 
 export interface MembershipPlanProps {
-  subscription: Subscription
+	subscription: Subscription;
 }
