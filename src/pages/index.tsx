@@ -1,9 +1,9 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Header from '../components/header';
-import Hero from '../components/hero/hero';
-import Modal from '../components/modal/modal';
-import Row from '../components/row/row';
+import Hero from '../components/hero';
+import Modal from '../components/modal';
+import Row from '../components/row';
 import SubscriptionPlan from '../components/subscription-plan/subscription-plan';
 import { getList } from '../helpers/lists';
 import { IMovie, MyList, Product } from '../interfaces/app.interface';
