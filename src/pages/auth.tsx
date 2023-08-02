@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
-import { TextField } from 'src/components';
+import  TextField from 'src/components/text-field/text-field';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useAuth } from 'src/hooks/useAuth';
