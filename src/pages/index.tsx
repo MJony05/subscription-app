@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Header from '../components/header/header';
+import Header from '../components/header';
 import Hero from '../components/hero/hero';
 import Modal from '../components/modal/modal';
 import Row from '../components/row/row';
