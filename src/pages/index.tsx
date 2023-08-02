@@ -1,14 +1,14 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Header from 'src/components/header/header';
-import Hero from 'src/components/hero/hero';
-import Modal from 'src/components/modal/modal';
-import Row from 'src/components/row/row';
-import SubscriptionPlan from 'src/components/subscription-plan/subscription-plan';
-import { getList } from 'src/helpers/lists';
-import { IMovie, MyList, Product } from 'src/interfaces/app.interface';
-import { API_REQUEST } from 'src/services/api.service';
-import { useInfoStore } from 'src/store';
+import Header from '../components/header/header';
+import Hero from '../components/hero/hero';
+import Modal from '../components/modal/modal';
+import Row from '../components/row/row';
+import SubscriptionPlan from '../components/subscription-plan/subscription-plan';
+import { getList } from '../helpers/lists';
+import { IMovie, MyList, Product } from '../interfaces/app.interface';
+import { API_REQUEST } from '../services/api.service';
+import { useInfoStore } from '../store';
 
 export default function Home({
   trending,

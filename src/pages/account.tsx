@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdOutlineSubscriptions } from 'react-icons/md';
-import MembershipPlan from 'src/components/membership-plan/membership-plan';
-import { Subscription } from 'src/interfaces/app.interface';
-import { API_REQUEST } from 'src/services/api.service';
+import MembershipPlan from '../components/membership-plan/membership-plan';
+import { Subscription } from '../interfaces/app.interface';
+import { API_REQUEST } from '../services/api.service';
 import moment from 'moment';
-import { useAuth } from 'src/hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 const Account = ({ subscription }: AccountProps) => {
   const { logout } = useAuth();
