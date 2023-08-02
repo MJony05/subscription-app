@@ -4,7 +4,7 @@ import Header from '../components/header';
 import Hero from '../components/hero';
 import Modal from '../components/modal';
 import Row from '../components/row';
-import SubscriptionPlan from '../components/subscription-plan/subscription-plan';
+import SubscriptionPlan from '../components/subscription-plan';
 import { getList } from '../helpers/lists';
 import { IMovie, MyList, Product } from '../interfaces/app.interface';
 import { API_REQUEST } from '../services/api.service';
