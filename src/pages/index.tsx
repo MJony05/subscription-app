@@ -1,16 +1,14 @@
-import { GetServerSideProps } from 'next'
-import Head from 'next/head'
-import {
-  Header,
-  Hero,
-  Modal,
-  Row,
-  SubscriptionPlan,
-} from 'src/components/index'
-import { getList } from 'src/helpers/lists'
-import { IMovie, MyList, Product } from 'src/interfaces/app.interface'
-import { API_REQUEST } from 'src/services/api.service'
-import { useInfoStore } from 'src/store'
+import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Header from 'src/components/header/header';
+import Hero from 'src/components/hero/hero';
+import Modal from 'src/components/modal/modal';
+import Row from 'src/components/row/row';
+import SubscriptionPlan from 'src/components/subscription-plan/subscription-plan';
+import { getList } from 'src/helpers/lists';
+import { IMovie, MyList, Product } from 'src/interfaces/app.interface';
+import { API_REQUEST } from 'src/services/api.service';
+import { useInfoStore } from 'src/store';
 
 export default function Home({
   trending,
@@ -25,9 +23,9 @@ export default function Home({
   subscription,
   list,
 }: HomeProps): JSX.Element {
-  const { modal } = useInfoStore()
+  const { modal } = useInfoStore();
 
-  if (!subscription.length) return <SubscriptionPlan products={products} />
+  if (!subscription.length) return <SubscriptionPlan products={products} />;
 
   return (
     <div
@@ -58,18 +56,18 @@ export default function Home({
       </main>
       {modal && <Modal />}
     </div>
-  )
+  );
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
   req,
 }) => {
-  const user_id = req.cookies.user_id
+  const user_id = req.cookies.user_id;
 
   if (!user_id) {
     return {
       redirect: { destination: '/auth', permanent: false },
-    }
+    };
   }
 
   const [
@@ -94,9 +92,9 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
     fetch(API_REQUEST.history).then((res) => res.json()),
     fetch(API_REQUEST.products_list).then((res) => res.json()),
     fetch(`${API_REQUEST.subscription}/${user_id}`).then((res) => res.json()),
-  ])
+  ]);
 
-  const myList: MyList[] = await getList(user_id)
+  const myList: MyList[] = await getList(user_id);
 
   return {
     props: {
@@ -112,19 +110,19 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({
       subscription: subscription.subscription.data,
       list: myList.map((c) => c.product),
     },
-  }
-}
+  };
+};
 
 interface HomeProps {
-  trending: IMovie[]
-  topRated: IMovie[]
-  tvTopRated: IMovie[]
-  popular: IMovie[]
-  documentary: IMovie[]
-  comedy: IMovie[]
-  family: IMovie[]
-  history: IMovie[]
-  products: Product[]
-  subscription: string[]
-  list: IMovie[]
+  trending: IMovie[];
+  topRated: IMovie[];
+  tvTopRated: IMovie[];
+  popular: IMovie[];
+  documentary: IMovie[];
+  comedy: IMovie[];
+  family: IMovie[];
+  history: IMovie[];
+  products: Product[];
+  subscription: string[];
+  list: IMovie[];
 }
